@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang='en'>
+<head>
+    <meta charset ="UTF-8">
+    <title> TemplateKu </title>
+</head>
+<body>
+    <h1 align="center"> Halo Teman-Teman!!! </h1>
+    <h3 align="center"> Hari ini aku belajar tentang Template Engine di Express Js </h3>
+</body>
+<html>
