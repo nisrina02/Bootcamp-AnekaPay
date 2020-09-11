@@ -15,5 +15,8 @@ block content
             label Password :
             input(type="password", placeholder="Password", name="password").form-control
           input(type="hidden", name="_csrf" value="#{csrfToken}")
-          button(type="submit").btn.btn-primary Login
+          .form-group
+            button(type="submit").btn.btn-primary Login
+        a.class(href='/tambah/user')
+            button(type="button").btn.btn-primary Register
       div.col-xs-6.col-md-4

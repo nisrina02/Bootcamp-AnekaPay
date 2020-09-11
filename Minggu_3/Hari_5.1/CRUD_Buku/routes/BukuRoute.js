@@ -2,7 +2,7 @@
     'use strict';
   
     var express = require('express'),
-      Buku = require('../models/Buku'),
+      Buku = require('../models/BukuModel'),
       csrf = require('csurf'),
       router = express.Router(),
       csrfProtection = csrf({
@@ -19,7 +19,8 @@
           });
         }
         return res.render('index', {
-          bukus: bukus
+          bukus: bukus,
+          user : req.session.nama
         });
   
       });
@@ -38,7 +39,8 @@
         pengarang: req.body.pengarang,
         penerbit: req.body.penerbit,
         tahunTerbit: req.body.tahunTerbit,
-        halaman: req.body.halaman
+        halaman: req.body.halaman,
+        harga: req.body.harga
       });
   
       return buku.save(function(err, buku) {
@@ -90,6 +92,7 @@
         buku.penerbit = req.body.penerbit;
         buku.tahunTerbit = req.body.tahunTerbit;
         buku.halaman = req.body.halaman;
+        buku.harga = req.body.harga;
         buku.save();
   
         res.redirect('/');

@@ -53,7 +53,7 @@
     app.use('/', UserRoute);
     app.use('/', Login);
   
-    mongoose.connect('mongodb://localhost/CRUD_Buku', function(err, res) {
+    mongoose.connect('mongodb://localhost/coba2', function(err, res) {
       if (err) {
         // return logger.error('koneksi mongodb gagal', err);
       } else {

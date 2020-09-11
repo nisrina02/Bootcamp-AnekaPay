@@ -2,7 +2,7 @@
     'use strict';
   
     var express = require('express'),
-      User = require('../models/User'),
+      User = require('../models/UserModel'),
       csrf = require('csurf'),
       router = express.Router(),
       csrfProtection = csrf({
@@ -46,7 +46,7 @@
                 message : "Gagal Menambahkan Data"
             });
         }
-        return res.redirect('/tampil');
+        return res.redirect('/tampilLogin');
       });
   
     });

@@ -1,9 +1,8 @@
 const express = require('express');
 var crypto = require('crypto');
 const router = express.Router();
-var User = require('../models/User');
+var User = require('../models/UserModel');
 
-var secret = 'apaya';
 var sess;
 
     router.get('/tampilLogin',function(req,res){
@@ -15,63 +14,27 @@ var sess;
     });
 
     router.post('/login/check', (req, res) => {
-        sess = req.session;
-
-        User.findOne({
-            email : req.body.email,
-            password : req.body.password
-        }, function(err, user) {
-            if(err) {
-                return res.render('500', {
-                    message : "Data Tidak Ditemukan"
-                });
-            }
-            if(user){
-                sess.email = user.email;
-                sess.logged_in = true;
-
-                res.render('index');
-            } 
-            else {
-                res.render('500');
+        User.findOne({email: req.body.email, password: req.body.password}, (err,user) =>{
+            if(!err){
+                if(user){
+                    //sess = req.session;
+                    req.session.id = user._id;
+                    req.session.nama = user.nama;
+                    req.session.email = user.email;
+                    res.redirect('/');
+                }else{
+                    res.render('500',{
+                        message:'Username atau Password Salah'
+                    });
+                }
+            }else{
+                console.log('Terjadi kesalahan saat login : ' + err);
+                res.render('500',{
+                message:'Ada kesalahan data'
+            });
             }
         })
-    })
-
-//     router.post('/login/check',(req,res) => {
-//         sess = req.session;
-            
-//             console.log("Kalimat");
-//             console.log(req.body);
-//             User.findOne({ email: req.body.email, password: req.body.password }, function(err, user) {
-//             if (err) throw err;
-
-//             if (user)
-//             {
-//             sess.email = user.email;
-//             sess.admin = user.admin;
-//             sess.logged_in = true;
-
-//             res.render('index');
-        
-//             } else {
-//                 res.render('500');
-//             }
-//             });
-             
-// });
-
-    router.get('/admin',(req,res) => {
-      sess = req.session;
-      if(sess.email) {
-          res.write(`<h1>Hello ${sess.email} </h1><br>`);
-          res.end('<a href='+'/logout'+'>Logout</a>');
-      }
-      else {
-          res.write('<h1>Please login first.</h1>');
-          res.end('<a href='+'/'+'>Login</a>');
-      }
-  });
+    });
   
  router.get('/logout',(req,res) => {
       req.session.destroy((err) => {
