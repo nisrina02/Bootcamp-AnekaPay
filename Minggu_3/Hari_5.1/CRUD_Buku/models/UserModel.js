@@ -20,7 +20,11 @@ var user = new Schema({
       password: {
           type : 'String',
           required: true
-      }
+      },
+      level: {
+        type : 'String',
+        required: true
+    }
 });
 
 module.exports = mongoose.model('user', user);

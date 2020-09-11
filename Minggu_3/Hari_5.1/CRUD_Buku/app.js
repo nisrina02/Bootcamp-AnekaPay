@@ -18,6 +18,7 @@
       cookieParser = require('cookie-parser'),
       BukuRoute = require('./routes/BukuRoute'),
       UserRoute = require('./routes/UserRoute'),
+      AdminRoute = require('./routes/AdminRoute'),
       Login = require('./routes/login'),
       app = express();
   
@@ -52,6 +53,7 @@
     app.use('/', BukuRoute);
     app.use('/', UserRoute);
     app.use('/', Login);
+    app.use('/', AdminRoute);
   
     mongoose.connect('mongodb://localhost/coba2', function(err, res) {
       if (err) {

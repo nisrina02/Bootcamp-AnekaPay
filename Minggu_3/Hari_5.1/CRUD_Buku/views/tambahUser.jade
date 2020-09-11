@@ -20,6 +20,9 @@ block content
           .form-group
             label Password :
             input(type="password", placeholder="Password", name="password").form-control
+          .form-group
+            label Status :
+            input(type="text", placeholder="Status", name="level").form-control
           input(type="hidden", name="_csrf" value="#{csrfToken}")
           button(type="submit").btn.btn-primary Daftar
       div.col-xs-6.col-md-4
