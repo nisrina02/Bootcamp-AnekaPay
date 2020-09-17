@@ -17,7 +17,7 @@
                   message: req.session.nama        
               });
           }else{
-              res.redirect('/logout');
+              res.redirect('/login/logout');
           }
       });
 
@@ -59,7 +59,7 @@
                 message : "Gagal Menambahkan Data"
             });
         }
-        return res.redirect('/tampilLogin');
+        return res.redirect('/login/tampilLogin');
       });
   
     });
@@ -103,7 +103,7 @@
         user.password = req.body.password;
         user.save();
   
-        res.redirect('/tampil');
+        res.redirect('/admin/tampil');
       });
     });
   
@@ -116,7 +116,7 @@
                 message : "Data Tidak Ditemukan"
             });
         }
-        res.redirect('/tampil');
+        res.redirect('/admin/tampil');
       });
     });
   

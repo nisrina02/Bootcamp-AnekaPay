@@ -7,7 +7,7 @@ block content
     div.row
       div.col-xs-6.col-md-4
       div.col-xs-6.col-md-4
-        form(id="form", method="post", action="/edit/cart/#{data.idBuku}")
+        form(id="form", method="post", action="/cart/edit/cart/#{data.idBuku}")
           .form-group
             label Nama Buku :
             input(type="text", placeholder="Nama Buku", name="nama", value="#{data.nama}", readonly).form-control

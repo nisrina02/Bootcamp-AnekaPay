@@ -51,11 +51,11 @@
     app.use(express.static(path.join(__dirname, 'public')));
     app.use(express.static(path.join(__dirname, 'bower_components')));
   
-    app.use('/', BukuRoute);
-    app.use('/', UserRoute);
-    app.use('/', Login);
-    app.use('/', AdminRoute);
-    app.use('/', CartRoute);
+    app.use('/buku', BukuRoute);
+    app.use('/user', UserRoute);
+    app.use('/login', Login);
+    app.use('/admin', AdminRoute);
+    app.use('/cart', CartRoute);
   
     mongoose.connect('mongodb://localhost/coba2', function(err, res) {
       if (err) {

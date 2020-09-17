@@ -26,15 +26,14 @@ block content
                   //- a.class(href='/tambah/cart')
                   //-   button(type="button").btn.btn-warning tambah keranjang 
                   //-   br
-                  a.class(href='/edit/cart/#{cart.idBuku}')
+                  a.class(href='/cart/edit/cart/#{cart.idBuku}')
                     button(type="button").btn.btn-success Edit
-                  a.class(href='/hapusCart/#{cart.idBuku}', onclick='return confirm("Apakah anda ingin menghapus data ?")')
+                  a.class(href='/cart/hapusCart/#{cart.idBuku}', onclick='return confirm("Apakah anda ingin menghapus data ?")')
                     button(type="button").btn.btn-danger Delete
         h3
             |Total : #{Total}
         p
-            a.class(href="/dashUser")
-            button(type="button").btn.btn-danger Back
-            a.class(href="/dashAdmin")
-            button(type="button").btn.btn-warning Checkout
+            a.class(href="/cart/checkout") Checkout
+        p
+            a.class(href="/user/dashUser") Back
       div.col-xs-6.col-md-4

@@ -19,14 +19,15 @@ var sess;
                 if(user){
                     console.log(user);
                     //sess = req.session;
-                    req.session.id = user._id;
+                    req.session.idUser = user.idUser;
                     req.session.nama = user.nama;
                     req.session.email = user.email;
+                    req.session.username = user.username;
                     req.session.level = user.level;
                     if (user.level == 'admin'){
-                        res.redirect('/dashAdmin');
+                        res.redirect('/admin/dashAdmin');
                     } else {
-                        res.redirect('/dashUser');
+                        res.redirect('/user/dashUser');
                     }
                 }else{
                     res.render('500',{
@@ -47,7 +48,7 @@ var sess;
           if(err) {
               return console.log(err);
           }
-          res.redirect('/tampilLogin');
+          res.redirect('/login/tampilLogin');
       });
   
   });

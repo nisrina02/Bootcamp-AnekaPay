@@ -9,7 +9,7 @@ block content
       div.col-xs-6.col-md-10
         h3 
           |Selamat Datang di toko, #{user}
-          a.class(href='/logout')
+          a.class(href='/user/profil')
               button(type="button").btn.btn-primary Profil
         table.table.table-bordered.table-striped.table-hover
           thead
@@ -33,11 +33,13 @@ block content
                 td #{buku.harga}
                 td #{buku.stok}
                 td.text-center
-                  a.class(href='/tambahCart/#{buku.idBuku}')
+                  a.class(href='/cart/tambahCart/#{buku.idBuku}')
                     button(type="button").btn.btn-warning Tambah ke Keranjang 
         p
-            a.class(href='/logout')
+            a.class(href='/login/logout')
               button(type="button").btn.btn-primary Logout
-             a.class(href='/cart')
+            a.class(href='/cart/cart')
               button(type="button").btn.btn-success Keranjang
+            a.class(href='/cart/riwayat')
+              button(type="button").btn.btn-warning History
       div.col-xs-6.col-md-4

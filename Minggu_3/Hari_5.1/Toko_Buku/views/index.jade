@@ -11,8 +11,6 @@ block content
           a.class(href='/tambah/buku')
             button(type="button").btn.btn-primary Tambah
         p
-        h3 
-          |Selamat Datang di toko, #{user}
         table.table.table-bordered.table-striped.table-hover
           thead
             tr
@@ -38,14 +36,10 @@ block content
                   //- a.class(href='/tambah/cart')
                   //-   button(type="button").btn.btn-warning tambah keranjang 
                   //-   br
-                  a.class(href='/edit/buku/#{buku.idBuku}')
+                  a.class(href='/buku/edit/buku/#{buku.idBuku}')
                     button(type="button").btn.btn-success Edit
-                  a.class(href='/delete/buku/#{buku.idBuku}', onclick='return confirm("Apakah anda ingin menghapus data ?")')
+                  a.class(href='/buku/delete/buku/#{buku.idBuku}', onclick='return confirm("Apakah anda ingin menghapus data ?")')
                     button(type="button").btn.btn-danger Delete
         p
-            a.class(href="/dashAdmin")
-            button(type="button").btn.btn-danger Back
-        p
-            a.class(href='/logout')
-              button(type="button").btn.btn-primary Logout
+            a.class(href="/admin/dashAdmin") Back
       div.col-xs-6.col-md-4
