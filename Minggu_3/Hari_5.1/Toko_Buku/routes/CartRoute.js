@@ -10,33 +10,52 @@
       }),
       uuid = require('node-uuid');
 
-      router.get('/tambah/cart/:idBuku', csrfProtection, function(req, res) {
+      router.get('/tambahCart/:idBuku', (req, res) => {
+        // console.log(req.params.id);
+        Buku.findOneAndUpdate({
+            idBuku: req.params.idBuku
+        }, req.body, {
+            new: true
+        }, (err, buku) => {
+            if (buku.stok <= 0) {
+                res.render('error', {
+                    err: 'Stok tidak ada'
+                })
+            }
+            res.render('tambahCart', {
+                buku: buku
+            });
+        })
+    })
+
+      // router.get('/tambah/cart/:idBuku', csrfProtection, function(req, res) {
     
-        var idBuku = req.params.idBuku;
+      //   var idBuku = req.params.idBuku;
     
-        Buku.findOne({
-          idBuku: idBuku
-        }, function(err, buku) {
-          if (err) {
-              return res.render('500', {
-                  message : "Data Tidak Ditemukan"
-              });
-          }
-          return res.render('tambahCart', {
-            buku: buku,
-            csrfToken: req.csrfToken()
-          });
-        });
-      });
+      //   Buku.findOne({
+      //     idBuku: idBuku
+      //   }, function(err, buku) {
+      //     if (err) {
+      //         return res.render('500', {
+      //             message : "Data Tidak Ditemukan"
+      //         });
+      //     }
+      //     return res.render('tambahCart', {
+      //       buku: buku,
+      //       csrfToken: req.csrfToken()
+      //     });
+      //   });
+      // });
 
     router.post('/simpan/cart', function(req, res){
       req.session;
       if(!req.session.cart){
         req.session.cart = [];
       }
+
       req.session.cart.push({
         // username: req.session.username,
-        // idBuku: req.body.idBuku,
+        idBuku: req.body.idBuku,
         nama: req.body.judul,
         harga: req.body.harga,
         jumlah: req.body.jumlah,
@@ -63,7 +82,49 @@
         })
         console.log(req.session.cart)
       }
-    })
+    });
+
+    router.get('/edit/cart/:idBuku', (req, res) => {
+      var idBuku = req.params.idBuku
+      var cart = req.session.cart
+      var indexcart = cart.findIndex((acc => acc.idBuku == idBuku))
+      res.render('editCart',{
+          data: cart[indexcart]
+      })
+  })
+
+    router.post('/edit/cart/:idBuku', (req, res) => {
+      if (!req.session.cart) {
+          req.session.cart = []
+      }
+      var idBuku = req.params.idBuku
+      var cart = req.session.cart
+  
+      var indexcart = cart.findIndex((array => array.idBuku == idBuku))
+      console.log(cart[indexcart]);
+  
+      cart[indexcart].jumlah = req.body.jumlah,
+      cart[indexcart].subtotal = req.body.jumlah * req.body.harga
+  
+      res.redirect('/cart')
+  })
+
+    router.get('/hapusCart/:idBuku', (req, res) => {
+      if (!req.session.cart) {
+          req.session.cart = []
+      }
+      var idBuku = req.params.idBuku
+      var cart = req.session.cart.reduce((acc, c) => {
+          if (c.idBuku !== idBuku) {
+              acc.push(c)
+          } else {
+  
+          }
+          return acc;
+      }, [])
+      req.session.cart = cart
+      res.redirect('/cart')
+  })
   
     module.exports = router;
   

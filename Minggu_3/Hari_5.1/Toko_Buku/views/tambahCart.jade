@@ -9,6 +9,9 @@ block content
       div.col-xs-6.col-md-4
         form(id="form", method="post", action="/simpan/cart")
           .form-group
+            label Id Buku :
+            input(type="text", placeholder="Id Buku", name="idBuku", value="#{buku.idBuku}", readonly).form-control
+          .form-group
             label Judul Buku :
             input(type="text", placeholder="Judul Buku", name="judul", value="#{buku.judul}", readonly).form-control
           .form-group
@@ -20,6 +23,9 @@ block content
           .form-group
             label Harga :
             input(type="number", placeholder="Harga Buku", name="harga", value="#{buku.harga}", readonly).form-control
+          .form-group
+            label Stok :
+            input(type="number", placeholder="Stok", name="stok", value="#{buku.stok}", readonly).form-control
           .form-group
             label Jumlah :
             input(type="number", placeholder="Jumlah Buku", name="jumlah").form-control

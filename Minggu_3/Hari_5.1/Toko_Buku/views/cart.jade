@@ -26,9 +26,9 @@ block content
                   //- a.class(href='/tambah/cart')
                   //-   button(type="button").btn.btn-warning tambah keranjang 
                   //-   br
-                  a.class(href='/edit/buku/#{cart._id}')
+                  a.class(href='/edit/cart/#{cart.idBuku}')
                     button(type="button").btn.btn-success Edit
-                  a.class(href='/delete/buku/#{cart._id}', onclick='return confirm("Apakah anda ingin menghapus data ?")')
+                  a.class(href='/hapusCart/#{cart.idBuku}', onclick='return confirm("Apakah anda ingin menghapus data ?")')
                     button(type="button").btn.btn-danger Delete
         h3
             |Total : #{Total}

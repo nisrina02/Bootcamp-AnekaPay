@@ -9,6 +9,8 @@ block content
       div.col-xs-6.col-md-10
         h3 
           |Selamat Datang di toko, #{user}
+          a.class(href='/logout')
+              button(type="button").btn.btn-primary Profil
         table.table.table-bordered.table-striped.table-hover
           thead
             tr
@@ -31,7 +33,7 @@ block content
                 td #{buku.harga}
                 td #{buku.stok}
                 td.text-center
-                  a.class(href='/tambah/cart/#{buku.idBuku}')
+                  a.class(href='/tambahCart/#{buku.idBuku}')
                     button(type="button").btn.btn-warning Tambah ke Keranjang 
         p
             a.class(href='/logout')
